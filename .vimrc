@@ -4,11 +4,15 @@ set t_Co=256
 set laststatus=2
 set noshowmode
 set number
+syntax on
 
 " Set indentation to tabs 4 spaces wide
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
+set autoindent
+set smartindent
+set smarttab
 
 " Detect os
 " https://vi.stackexchange.com/a/2577
@@ -21,15 +25,18 @@ if !exists("g:os")
 endif
 
 " Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if g:os == "Linux"
+	if empty(glob('~/.vim/autoload/plug.vim'))
+		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
 endif
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
+"Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -42,8 +49,8 @@ Plug 'tpope/vim-surround'
 
 call plug#end()
 
-let NERDTreeShowHidden=1 " Show hidden files
 let g:lightline = {
 			\ 'colorscheme': 'jellybeans',
 			\ }
 colorscheme jellybeans
+let NERDTreeShowHidden=1 " Show hidden files
