@@ -4,6 +4,7 @@ set t_Co=256
 set laststatus=2
 set noshowmode
 set number
+set backspace=eol,indent,start
 syntax on
 
 " Set indentation to tabs 4 spaces wide
