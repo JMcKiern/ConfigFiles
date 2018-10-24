@@ -1,3 +1,5 @@
+" use :so % or :so $MYVIRMC to reload vimrc
+
 set hidden " Allow hidden unwriten buffers
 set nowrap
 set t_Co=256
@@ -29,6 +31,12 @@ endif
 " Change guifont to avoid italics being cut off
 if has("gui_running")
 	set guifont=Consolas:h11
+endif
+
+" Latex command
+if g:os == "Windows"
+	" TODO: Add check if *.tex file
+	map <F5> :w <bar> !cd %:h && "C:\Program Files\MiKTeX 2.9\miktex\bin\x64\xelatex.exe" "%:p" 
 endif
 
 " Install vim-plug if not found
