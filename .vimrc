@@ -26,6 +26,11 @@ if !exists("g:os")
 	endif
 endif
 
+" Change guifont to avoid italics being cut off
+if has("gui_running")
+	set guifont=Consolas:h11
+endif
+
 " Install vim-plug if not found
 if g:os == "Linux"
 	if empty(glob('~/.vim/autoload/plug.vim'))
