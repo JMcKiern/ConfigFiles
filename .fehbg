@@ -1,0 +1,2 @@
+#!/bin/sh
+feh  --bg-fill '/home/jack/Downloads/wallhaven-64.jpg' 

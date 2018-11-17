@@ -1,0 +1,39 @@
+*background:[95]#222222
+*foreground:#e8e9ca
+
+*color0:    #222222
+*color1:    #8b3e2f
+*color2:    #526f33
+*color3:    #665847
+*color4:    #4a708b
+*color5:    #7a378b
+*color6:    #528b8b
+*color7:    #999999
+
+*color8:    #4c4c4c
+*color9:    #d75f00
+*color10:   #cee318
+*color11:   #eee685
+*color12:   #9ac0cd
+*color13:   #9f79ee
+*color14:   #79cdcd
+*color15:   #e8e9ca
+
+URxvt.colorIT: #87af5f
+URxvt.colorBD: #d7d7d7
+URxvt.colorUL: #87afd7
+
+URxvt.font:xft:envy code r:pixelsize=14
+!URxvt.font:xft:Terminus:pixelsize=14
+!URxvt.font:-*-envy code r-*-*-normal--*-*-*-*-*-*-iso8859-*
+!URxvt.font:-*-terminus-*-*-normal-*-14-*-*-*-*-*-*-*
+!URxvt.font:-*-tewi-*-*-normal-*-16-*-*-*-*-*-*-*
+URxvt.letterSpace:-1
+
+URxvt.transparent: true 
+URxvt.shading: 20
+URxvt.fading: 20
+
+!URxvt.scrollstyle: plain
+!URxvt.borderColor: #996633
+!URxvt.internalBorder: 1
