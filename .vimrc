@@ -72,6 +72,6 @@ let NERDTreeShowHidden=1 " Show hidden files
 
 " Arch
 "colorscheme base16-default
-set background=dark
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
+"set background=dark
+"highlight Normal ctermbg=none
+"highlight NonText ctermbg=none
