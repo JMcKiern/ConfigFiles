@@ -10,6 +10,7 @@ set backspace=eol,indent,start
 set showcmd
 syntax on
 
+
 " Set indentation to tabs 4 spaces wide
 set tabstop=4
 set shiftwidth=4
@@ -33,10 +34,38 @@ if has("gui_running")
 	set guifont=Consolas:h11
 endif
 
-" Latex command
+" Compile/Run commands
+autocmd FileType cpp call SetCPPFileOptions()
+autocmd FileType python call SetPythonFileOptions()
+autocmd FileType text call SetTextFileOptions()
+
+function SetCPPFileOptions()
+	call SetGeneralProgrammingOptions()
+endfunction
+
+function SetPythonFileOptions()
+	noremap <buffer> <F5> :w !python<CR>
+	call SetGeneralProgrammingOptions()
+endfunction
+
+function SetGeneralProgrammingOptions()
+	set list
+	set listchars=tab:\|\ ,space:�,trail:~,precedes:�,extends:�
+	set colorcolumn=80
+	highlight ColorColumn ctermbg=0 guibg=#444444
+endfunction
+
+function SetTextFileOptions()
+	set textwidth=80
+	set wrap
+	set linebreak
+endfunction
+
+
+
 if g:os == "Windows"
 	" TODO: Add check if *.tex file
-	map <F5> :w <bar> !cd %:h && "C:\Program Files\MiKTeX 2.9\miktex\bin\x64\xelatex.exe" "%:p" 
+	"map <F5> :w <bar> !cd %:h && "C:\Program Files\MiKTeX 2.9\miktex\bin\x64\xelatex.exe" "%:p" 
 endif
 
 " Install vim-plug if not found
@@ -55,13 +84,15 @@ Plug 'itchyny/lightline.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'terryma/vim-multiple-cursors'
+"vim-multiple-cursors: <C-n> to use
+Plug 'terryma/vim-multiple-cursors' 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
 Plug 'editorconfig/editorconfig-vim'
+"Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -69,6 +100,8 @@ let g:lightline = {
 			\ 'colorscheme': 'jellybeans',
 			\ }
 colorscheme jellybeans
+highlight clear SpecialKey
+highlight SpecialKey term=bold ctermfg=9 guifg=#444444
 let NERDTreeShowHidden=1 " Show hidden files
 
 " Arch
