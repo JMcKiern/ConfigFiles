@@ -10,7 +10,6 @@ set backspace=eol,indent,start
 set showcmd
 syntax on
 
-
 " Set indentation to tabs 4 spaces wide
 set tabstop=4
 set shiftwidth=4
@@ -50,7 +49,7 @@ endfunction
 
 function SetGeneralProgrammingOptions()
 	set list
-	set listchars=tab:\|\ ,space:�,trail:~,precedes:�,extends:�
+	set listchars=tab:\|\ ,space:·,trail:~,precedes:«,extends:»
 	set colorcolumn=80
 	highlight ColorColumn ctermbg=0 guibg=#444444
 endfunction
