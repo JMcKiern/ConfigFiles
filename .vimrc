@@ -1,5 +1,5 @@
 " use :so % or :so $MYVIRMC to reload vimrc
-
+set encoding=utf-8
 set hidden " Allow hidden unwriten buffers
 set nowrap
 set t_Co=256
