@@ -92,6 +92,7 @@ Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
 Plug 'editorconfig/editorconfig-vim'
 "Plug 'majutsushi/tagbar'
+Plug 'valloric/youcompleteme', {'do': './install.py'}
 
 call plug#end()
 
