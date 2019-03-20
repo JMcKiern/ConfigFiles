@@ -44,7 +44,7 @@ function SetCPPFileOptions()
 endfunction
 
 function SetPythonFileOptions()
-	noremap <buffer> <F5> :w !python<CR>
+	noremap <buffer> <F5> :silent w !python<CR>
 	set nosmartindent
 	" Use spaces instead of tabs in python
 	set expandtab 
