@@ -44,6 +44,9 @@ endfunction
 
 function SetPythonFileOptions()
 	noremap <buffer> <F5> :w !python<CR>
+	set nosmartindent
+	" Use spaces instead of tabs in python
+	set expandtab 
 	call SetGeneralProgrammingOptions()
 endfunction
 
