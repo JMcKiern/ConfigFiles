@@ -37,6 +37,7 @@ endif
 autocmd FileType cpp call SetCPPFileOptions()
 autocmd FileType python call SetPythonFileOptions()
 autocmd FileType text call SetTextFileOptions()
+autocmd FileType tex call SetLatexOptions()
 
 function SetCPPFileOptions()
 	call SetGeneralProgrammingOptions()
@@ -57,6 +58,13 @@ function SetGeneralProgrammingOptions()
 	highlight ColorColumn ctermbg=0 guibg=#444444
 endfunction
 
+function SetLatexOptions()
+	map <F5> :silent w !cd "%:h" && xelatex "%:p" <CR>
+	map <F6> :silent !start sumatrapdf "%:p:r.pdf" <CR>
+	set colorcolumn=80
+	highlight ColorColumn ctermbg=0 guibg=#444444
+endfunction
+
 function SetTextFileOptions()
 	set textwidth=80
 	set wrap
@@ -67,7 +75,6 @@ endfunction
 
 if g:os == "Windows"
 	" TODO: Add check if *.tex file
-	"map <F5> :w <bar> !cd %:h && "C:\Program Files\MiKTeX 2.9\miktex\bin\x64\xelatex.exe" "%:p" 
 endif
 
 " Install vim-plug if not found
