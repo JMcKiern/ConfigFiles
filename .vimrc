@@ -44,7 +44,14 @@ function SetCPPFileOptions()
 endfunction
 
 function SetPythonFileOptions()
-	noremap <buffer> <F5> :silent w !python<CR>
+	" For current buffer, set F5 = write file and run in current folder
+	if g:os == "Windows"
+		" Must do this to remove two ENTER presses to continue
+		noremap <buffer> <F5> :w <bar> silent !python "%:p" & pause<CR>
+	endif
+	if g:os == "Linux"
+		noremap <buffer> <F5> :w <bar> !python "%:p"<CR>
+	endif
 	set nosmartindent
 	" Use spaces instead of tabs in python
 	set expandtab 
