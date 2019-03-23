@@ -66,7 +66,7 @@ function SetGeneralProgrammingOptions()
 endfunction
 
 function SetLatexOptions()
-	map <F5> :silent w !cd "%:h" && xelatex "%:p" <CR>
+	map <F5> :w <bar> !cd "%:h" && latexmk -pdf -xelatex "%:p" <CR>
 	map <F6> :silent !start sumatrapdf "%:p:r.pdf" <CR>
 	set colorcolumn=80
 	highlight ColorColumn ctermbg=0 guibg=#444444
