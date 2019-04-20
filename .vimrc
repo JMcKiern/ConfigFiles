@@ -34,12 +34,14 @@ if has("gui_running")
 endif
 
 " Compile/Run commands
-autocmd FileType cpp call SetCPPFileOptions()
+autocmd FileType c call SetCFileOptions()
+autocmd FileType cpp call SetCFileOptions()
 autocmd FileType python call SetPythonFileOptions()
 autocmd FileType text call SetTextFileOptions()
 autocmd FileType tex call SetLatexOptions()
 
-function SetCPPFileOptions()
+function SetCFileOptions()
+	let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/youcompleteme/third_party/ycmd/.ycm_extra_conf.py"
 	call SetGeneralProgrammingOptions()
 endfunction
 
@@ -66,10 +68,10 @@ function SetGeneralProgrammingOptions()
 endfunction
 
 function SetLatexOptions()
+	map <F4> :w <bar> !cd "%:h" && latexmk -pdf -xelatex "%:h/main.tex" <CR>
 	map <F5> :w <bar> !cd "%:h" && latexmk -pdf -xelatex "%:p" <CR>
 	map <F6> :silent !start sumatrapdf "%:p:r.pdf" <CR>
-	set colorcolumn=80
-	highlight ColorColumn ctermbg=0 guibg=#444444
+	call SetGeneralProgrammingOptions()
 endfunction
 
 function SetTextFileOptions()
@@ -77,8 +79,6 @@ function SetTextFileOptions()
 	set wrap
 	set linebreak
 endfunction
-
-
 
 if g:os == "Windows"
 	" TODO: Add check if *.tex file
@@ -109,7 +109,7 @@ Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'majutsushi/tagbar'
-Plug 'valloric/youcompleteme', {'do': './install.py'}
+Plug 'valloric/youcompleteme', {'do': './install.py --clang-completer'}
 
 call plug#end()
 
