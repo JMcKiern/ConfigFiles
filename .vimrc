@@ -30,7 +30,7 @@ endif
 
 " Change guifont to avoid italics being cut off
 if has("gui_running")
-	set guifont=Consolas:h11
+	set guifont=Fixedsys:h11
 endif
 
 " Compile/Run commands
