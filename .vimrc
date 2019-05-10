@@ -28,9 +28,11 @@ if !exists("g:os")
 	endif
 endif
 
-" Change guifont to avoid italics being cut off
 if has("gui_running")
-	set guifont=Fixedsys:h11
+	" Change guifont to avoid italics being cut off
+	set guifont=Consolas:h11
+	" Don't automatically resize GUI window
+	set guioptions+=k
 endif
 
 " Compile/Run commands
