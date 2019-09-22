@@ -119,6 +119,9 @@ call plug#end()
 
 let g:lightline = {
 			\ 'colorscheme': 'jellybeans',
+			\ 'inactive' : {
+			\   'left' : [ [ 'filename', 'modified' ] ],
+			\ },
 			\ }
 colorscheme jellybeans
 highlight clear SpecialKey
