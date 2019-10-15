@@ -30,7 +30,7 @@ endif
 
 if has("gui_running")
 	" Change guifont to avoid italics being cut off
-	set guifont=Consolas:h11
+	set guifont=Consolas:h10
 	" Don't automatically resize GUI window
 	set guioptions+=k
 endif
