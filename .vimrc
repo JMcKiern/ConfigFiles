@@ -162,31 +162,54 @@ function! GitStatusLine()
 		return l:branch
 endfunction
 
-let g:lightline = {
-			\ 'colorscheme': 'jellybeans',
-			\ 'active' : {
-		    \   'left': [ [ 'mode', 'paste' ],
-		    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-		    \   'right': [ [ 'syntastic', 'lineinfo' ],
-		    \              [ 'percent' ],
-		    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-			\ },
-			\ 'inactive' : {
-			\   'left' : [ [ 'gitbranch', 'filename', 'modified' ] ],
-			\ },
-			\ 'component_function': {
-			\   'gitbranch': 'GitStatusLine'
-			\ },
-			\ 'component_expand': {
-			\   'syntastic': 'SyntasticStatuslineFlag',
-			\ },
-			\ 'component_type': {
-			\   'syntastic': 'error',
-			\ },
-			\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-			\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+if &guifont ==# "Ubuntu_Mono_derivative_Powerlin:h10"
+	let g:lightline = {
+				\ 'colorscheme': 'jellybeans',
+				\ 'active' : {
+				\   'left': [ [ 'mode', 'paste' ],
+				\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+				\   'right': [ [ 'syntastic', 'lineinfo' ],
+				\              [ 'percent' ],
+				\              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+				\ },
+				\ 'inactive' : {
+				\   'left' : [ [ 'gitbranch', 'filename', 'modified' ] ],
+				\ },
+				\ 'component_function': {
+				\   'gitbranch': 'GitStatusLine'
+				\ },
+				\ 'component_expand': {
+				\   'syntastic': 'SyntasticStatuslineFlag',
+				\ },
+				\ 'component_type': {
+				\   'syntastic': 'error',
+				\ },
+				\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+				\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
 				\ 'enable': { 'tabline': 0 },
-			\ }
+				\ }
+else
+	let g:lightline = {
+				\ 'colorscheme': 'jellybeans',
+				\ 'active' : {
+				\   'left': [ [ 'mode', 'paste' ],
+				\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+				\   'right': [ [ 'syntastic', 'lineinfo' ],
+				\              [ 'percent' ],
+				\              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+				\ },
+				\ 'inactive' : {
+				\   'left' : [ [ 'filename', 'modified' ] ],
+				\ },
+				\ 'component_expand': {
+				\   'syntastic': 'SyntasticStatuslineFlag',
+				\ },
+				\ 'component_type': {
+				\   'syntastic': 'error',
+				\ },
+				\ 'enable': { 'tabline': 0 },
+				\ }
+endif
 colorscheme jellybeans
 highlight clear SpecialKey
 highlight SpecialKey term=bold ctermfg=9 guifg=#444444
