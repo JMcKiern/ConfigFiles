@@ -18,6 +18,11 @@ set autoindent
 set smartindent
 set smarttab
 
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable " no fold on opening
+set foldlevel=2
+
 " Detect os
 " https://vi.stackexchange.com/a/2577
 if !exists("g:os")
@@ -30,24 +35,38 @@ endif
 
 if has("gui_running")
 	" Change guifont to avoid italics being cut off
-	set guifont=Consolas:h10
+	set guifont=Ubuntu_Mono_derivative_Powerlin:h10,Consolas:h10
 	" Don't automatically resize GUI window
-	set guioptions+=k
+	"set guioptions+=k
+	" Remove scrollbars
+	"set guioptions-=l
+	"set guioptions-=L
+	"set guioptions-=r
+	"set guioptions-=R
+	set guioptions=
 endif
+
+command! ViewPanes call ViewPanesToggle()
+function! ViewPanesToggle()
+	:TagbarToggle
+	:NERDTreeToggle
+endfunction
 
 " Compile/Run commands
 autocmd FileType c call SetCFileOptions()
 autocmd FileType cpp call SetCFileOptions()
+autocmd FileType java call SetGeneralProgrammingOptions()
 autocmd FileType python call SetPythonFileOptions()
 autocmd FileType text call SetTextFileOptions()
 autocmd FileType tex call SetLatexOptions()
+autocmd FileType markdown call SetMarkdownOptions()
 
-function SetCFileOptions()
+function! SetCFileOptions()
 	let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/youcompleteme/third_party/ycmd/.ycm_extra_conf.py"
 	call SetGeneralProgrammingOptions()
 endfunction
 
-function SetPythonFileOptions()
+function! SetPythonFileOptions()
 	" For current buffer, set F5 = write file and run in current folder
 	if g:os == "Windows"
 		" Must do this to remove two ENTER presses to continue
@@ -58,28 +77,43 @@ function SetPythonFileOptions()
 	endif
 	set nosmartindent
 	" Use spaces instead of tabs in python
-	set expandtab 
+	set expandtab
 	call SetGeneralProgrammingOptions()
 endfunction
 
-function SetGeneralProgrammingOptions()
+function! ShowWhiteSpace()
 	set list
 	set listchars=tab:\|\ ,space:·,trail:~,precedes:«,extends:»
+endfunction
+
+function! ShowColorColumn()
 	set colorcolumn=80
 	highlight ColorColumn ctermbg=0 guibg=#444444
 endfunction
 
-function SetLatexOptions()
+function! SetGeneralProgrammingOptions()
+	call ShowWhiteSpace()
+	call ShowColorColumn()
+endfunction
+
+function! SetLatexOptions()
 	map <F4> :w <bar> !cd "%:h" && latexmk -pdf -xelatex "%:h/main.tex" <CR>
 	map <F5> :w <bar> !cd "%:h" && latexmk -pdf -xelatex "%:p" <CR>
 	map <F6> :silent !start sumatrapdf "%:p:r.pdf" <CR>
 	call SetGeneralProgrammingOptions()
 endfunction
 
-function SetTextFileOptions()
+function! SetTextFileOptions()
 	set textwidth=80
 	set wrap
 	set linebreak
+endfunction
+
+function! SetMarkdownOptions()
+	map <F5> :silent !chrome.exe % <CR>
+	call ShowWhiteSpace()
+	set shiftwidth=4
+	set expandtab
 endfunction
 
 if g:os == "Windows"
@@ -103,30 +137,61 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 "vim-multiple-cursors: <C-n> to use
-Plug 'terryma/vim-multiple-cursors' 
+Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+"Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'majutsushi/tagbar'
-Plug 'valloric/youcompleteme', {'do': './install.py --clang-completer'}
+"Plug 'valloric/youcompleteme', {'do': './install.py --clang-completer'}
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+"Plug 'dense-analysis/ale'
+"Plug 'maralla/validator.vim'
 
 call plug#end()
 
+function! GitStatusLine()
+	let l:branch = fugitive#head()
+	if (l:branch != "")
+		return " " . fugitive#head()
+	else
+		return l:branch
+endfunction
+
 let g:lightline = {
 			\ 'colorscheme': 'jellybeans',
-			\ 'inactive' : {
-			\   'left' : [ [ 'filename', 'modified' ] ],
+			\ 'active' : {
+		    \   'left': [ [ 'mode', 'paste' ],
+		    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+		    \   'right': [ [ 'syntastic', 'lineinfo' ],
+		    \              [ 'percent' ],
+		    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
 			\ },
+			\ 'inactive' : {
+			\   'left' : [ [ 'gitbranch', 'filename', 'modified' ] ],
+			\ },
+			\ 'component_function': {
+			\   'gitbranch': 'GitStatusLine'
+			\ },
+			\ 'component_expand': {
+			\   'syntastic': 'SyntasticStatuslineFlag',
+			\ },
+			\ 'component_type': {
+			\   'syntastic': 'error',
+			\ },
+			\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+			\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+				\ 'enable': { 'tabline': 0 },
 			\ }
 colorscheme jellybeans
 highlight clear SpecialKey
 highlight SpecialKey term=bold ctermfg=9 guifg=#444444
 let NERDTreeShowHidden=1 " Show hidden files
+let NERDTreeIgnore = ['\.swp$']
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -136,6 +201,8 @@ let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+set belloff=all
 
 " Arch
 "colorscheme base16-default
