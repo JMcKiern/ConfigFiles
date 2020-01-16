@@ -110,7 +110,7 @@ function! SetTextFileOptions()
 endfunction
 
 function! SetMarkdownOptions()
-	map <F5> :silent !chrome.exe % <CR>
+	map <F5> :silent !chrome.exe "%:p" <CR>
 	call ShowWhiteSpace()
 	set shiftwidth=4
 	set expandtab
