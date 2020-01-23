@@ -23,6 +23,9 @@ set foldnestmax=10
 set nofoldenable " no fold on opening
 set foldlevel=100
 
+" Don't place swap files in working directory
+set dir-=.
+
 " Detect os
 " https://vi.stackexchange.com/a/2577
 if !exists("g:os")
