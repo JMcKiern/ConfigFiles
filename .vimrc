@@ -18,10 +18,10 @@ set autoindent
 set smartindent
 set smarttab
 
-set foldmethod=indent
+set foldmethod=syntax
 set foldnestmax=10
 set nofoldenable " no fold on opening
-set foldlevel=2
+set foldlevel=100
 
 " Detect os
 " https://vi.stackexchange.com/a/2577
