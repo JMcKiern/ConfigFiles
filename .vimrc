@@ -24,7 +24,7 @@ set nofoldenable " no fold on opening
 set foldlevel=100
 
 set list
-set listchars=precedes:«,extends:»
+set listchars=tab:\ \ ,space:\ ,trail:~,precedes:«,extends:»
 
 " Don't place swap files in working directory
 set dir-=.
