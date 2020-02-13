@@ -51,6 +51,20 @@ if has("gui_running")
 	set guioptions=r
 endif
 
+let mapleader='\'
+
+function! GetFontSize()
+	return str2nr(matchstr(&guifont, ':h\d\{1,2\}')[2:])
+endfunction
+function! ChangeFontSize(changeBy)
+	let l:new_font_size = GetFontSize() + a:changeBy
+	let &guifont = substitute(&guifont, ':h\d\{1,2\}', ':h' . l:new_font_size, 'g')
+endfunction
+
+noremap <Leader>+ :call ChangeFontSize(+1)<CR>
+noremap <Leader>= :call ChangeFontSize(+1)<CR>
+noremap <Leader>- :call ChangeFontSize(-1)<CR>
+
 command! ViewPanes call ViewPanesToggle()
 function! ViewPanesToggle()
 	:TagbarToggle
