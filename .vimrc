@@ -232,7 +232,7 @@ else
 endif
 colorscheme jellybeans
 highlight clear SpecialKey
-highlight SpecialKey term=bold ctermfg=9 guifg=#444444
+highlight SpecialKey term=bold ctermfg=DarkGrey guifg=#444444
 let NERDTreeShowHidden=1 " Show hidden files
 let NERDTreeIgnore = ['\.swp$']
 
