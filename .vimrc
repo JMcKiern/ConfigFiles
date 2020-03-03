@@ -65,6 +65,13 @@ noremap <Leader>+ :call ChangeFontSize(+1)<CR>
 noremap <Leader>= :call ChangeFontSize(+1)<CR>
 noremap <Leader>- :call ChangeFontSize(-1)<CR>
 
+noremap <Leader>c <nop>
+vnoremap <leader>c "+y
+
+noremap <Leader>v <nop>
+nnoremap <Leader>v "+p
+vnoremap <Leader>v "+p
+
 command! ViewPanes call ViewPanesToggle()
 function! ViewPanesToggle()
 	:TagbarToggle
