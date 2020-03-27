@@ -178,6 +178,7 @@ Plug 'peitalin/vim-jsx-typescript'
 "Plug 'dense-analysis/ale'
 "Plug 'maralla/validator.vim'
 Plug 'PProvost/vim-ps1'
+Plug 'dart-lang/dart-vim-plugin'
 
 call plug#end()
 
