@@ -8,6 +8,7 @@ set noshowmode
 set number
 set backspace=eol,indent,start
 set showcmd
+set nojoinspaces
 syntax on
 
 " Set indentation to tabs 4 spaces wide
