@@ -35,3 +35,5 @@ vim +PlugInstall +qall
 
 git config --global core.editor "'$(Get-Command vim | % { $_.Source -replace '\\', '/'})'"
 git config --global core.autocrlf true
+git config --global user.email "jmckiern@tcd.ie"
+git config --global user.name "jmckiern"
