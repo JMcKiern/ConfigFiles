@@ -1,2 +1,6 @@
-#!/bin/sh
-feh  --bg-fill '/home/jack/Downloads/wallhaven-64.jpg' 
+#!/bin/bash
+if [[ -e ~/walls/on/ ]]; then
+	chosen_wall=$(shuf -n 1 -e ~/walls/on/*)
+	echo using $chosen_wall
+	feh --no-fehbg --bg-fill $chosen_wall
+fi

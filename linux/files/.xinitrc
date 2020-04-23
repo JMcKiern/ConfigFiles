@@ -1,3 +1,3 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-sh ~/.fehbg &
+~/.fehbg &
 exec i3
