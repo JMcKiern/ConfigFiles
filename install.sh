@@ -11,6 +11,7 @@ packages=(
 	xorg-xinit
 	xorg-xrdb
 	mesa
+	sudo
 	rxvt-unicode
 	zsh
 	zsh-completions
