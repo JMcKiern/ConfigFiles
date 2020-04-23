@@ -10,7 +10,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 
 Update-EnvVars
 
-choco install packages.config -y
+choco install windows/packages.config -y
 
 Update-EnvVars
 

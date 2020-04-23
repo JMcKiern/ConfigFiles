@@ -1,13 +1,8 @@
 #!/bin/bash
 
-files=()
-for filename in $(find ./files -type f); do
-	rel_filename=$(realpath --relative-to=files $filename)
-	files+=($rel_filename)
-	echo Found $rel_filename
-done
-
-for filename in "${files[@]}"; do
-	echo cp ./files/$filename ~/$filename
-	cp ~/$filename ./files/$filename
+dotfile_dir="${BASH_SOURCE%/*}/files"
+for filename in $(find $dotfile_dir -type f); do
+	rel_filename=$(realpath --relative-to=$dotfile_dir $filename)
+	echo coping $rel_filename to home dir
+	cp ~/$rel_filename $dotfile_dir/$rel_filename
 done
