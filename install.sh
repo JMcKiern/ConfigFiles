@@ -10,6 +10,7 @@ packages=(
 	xorg-server
 	xorg-xinit
 	xorg-xrdb
+	numlockx
 	mesa
 	sudo
 	rxvt-unicode
