@@ -161,7 +161,7 @@ bar {
 font xft:envy code r 11px
 
 #Personal Modifications
-bindsym $mod+i exec firefox
+bindsym $mod+i exec chromium
 
 #Audio Control
 bindsym XF86AudioMute exec "amixer set Master toggle ; pkill -RTMIN+1 i3blocks"

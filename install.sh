@@ -28,6 +28,7 @@ packages=(
 	mpv
 	mpd
 	alsa-utils
+	chromium
 )
 
 aur_packages=(
