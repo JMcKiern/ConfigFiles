@@ -155,6 +155,7 @@ bar {
         status_command i3status --config ~/.i3/i3statusconfig
         position top
         font xft:envy code r 12px
+		tray_output primary
 }
 
 # Fonts
