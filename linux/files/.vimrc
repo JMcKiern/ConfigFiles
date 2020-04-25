@@ -9,6 +9,7 @@ set number
 set backspace=eol,indent,start
 set showcmd
 set nojoinspaces
+set mouse=a
 syntax on
 
 " Set indentation to tabs 4 spaces wide
