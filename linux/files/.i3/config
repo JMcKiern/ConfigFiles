@@ -162,6 +162,8 @@ font xft:envy code r 11px
 
 #Personal Modifications
 bindsym $mod+i exec chromium
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 #Audio Control
 bindsym XF86AudioMute exec "amixer set Master toggle ; pkill -RTMIN+1 i3blocks"
