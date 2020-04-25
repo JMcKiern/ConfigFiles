@@ -166,6 +166,8 @@ bindsym $mod+i exec chromium
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
+hide_edge_borders smart
+
 #Audio Control
 bindsym XF86AudioMute exec "amixer set Master toggle ; pkill -RTMIN+1 i3blocks"
 bindsym XF86AudioLowerVolume exec "amixer -M set Master 5%- ; pkill -RTMIN+1 i3blocks"
