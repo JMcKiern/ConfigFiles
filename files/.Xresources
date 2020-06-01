@@ -1,4 +1,4 @@
-*background:[95]#222222
+*background:#222222
 *foreground:#e8e9ca
 
 *color0:    #222222
@@ -30,7 +30,7 @@ URxvt.font:xft:envy code r:pixelsize=14
 !URxvt.font:-*-tewi-*-*-normal-*-16-*-*-*-*-*-*-*
 URxvt.letterSpace:-1
 
-URxvt.transparent: true 
+URxvt.transparent: true
 URxvt.shading: 20
 URxvt.fading: 20
 

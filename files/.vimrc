@@ -1,4 +1,5 @@
 " use :so % or :so $MYVIRMC to reload vimrc
+
 set encoding=utf-8
 set hidden " Allow hidden unwriten buffers
 set nowrap
@@ -163,6 +164,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'arrufat/vala.vim'
 Plug 'itchyny/lightline.vim'
 "Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
@@ -185,8 +187,10 @@ Plug 'peitalin/vim-jsx-typescript'
 "Plug 'maralla/validator.vim'
 Plug 'PProvost/vim-ps1'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'jmckiern/vim-venter'
 
 call plug#end()
+
 
 function! GitStatusLine()
 	let l:branch = fugitive#head()
@@ -244,15 +248,17 @@ else
 				\ 'enable': { 'tabline': 0 },
 				\ }
 endif
-colorscheme jellybeans
+silent! colorscheme jellybeans
 highlight clear SpecialKey
 highlight SpecialKey term=bold ctermfg=DarkGrey guifg=#444444
 let NERDTreeShowHidden=1 " Show hidden files
 let NERDTreeIgnore = ['\.swp$']
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+if exists("g:loaded_syntastic_plugin")
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+endif
 
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
@@ -262,7 +268,12 @@ let g:syntastic_check_on_wq = 0
 set belloff=all
 
 " Arch
-"colorscheme base16-default
-"set background=dark
-"highlight Normal ctermbg=none
-"highlight NonText ctermbg=none
+if g:os == "Linux"
+	highlight Normal ctermbg=none
+	highlight LineNr ctermbg=none
+	highlight Folded ctermbg=none
+	highlight NonText ctermbg=none
+	highlight SpecialKey ctermbg=none
+	highlight VertSplit ctermbg=none
+	highlight SignColumn ctermbg=none
+endif

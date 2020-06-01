@@ -21,7 +21,7 @@ packages=(
 	i3-wm
 	i3status
 	dmenu
-	vim
+	gvim
 	git
 	ranger
 	screenfetch
