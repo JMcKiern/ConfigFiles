@@ -51,10 +51,9 @@ for pkg in ${aur_packages[@]}; do
 	rm -rf ./$pkg
 done
 
-cd /tmp
-git clone https://github.com/jmckiern/dotfiles.git
-./dotfiles/linux/install-config-files.sh
-rm -rf dotfiles
+git clone https://github.com/jmckiern/dotfiles.git /tmp/dotfiles
+/tmp/dotfiles/linux/install-config-files.sh
+rm -rf /tmp/dotfiles
 
 echo Downloading vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
