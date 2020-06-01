@@ -29,10 +29,13 @@ packages=(
 	mpd
 	alsa-utils
 	chromium
+	pulsemixer
+	playerctl
 )
 
 aur_packages=(
 	ttf-envy-code-r
+	spotify
 )
 
 sudo pacman -Syu --noconfirm
