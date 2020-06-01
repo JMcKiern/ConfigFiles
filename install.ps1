@@ -18,7 +18,7 @@ Update-EnvVars
 if (Test-Path "~/.vimrc") {
 	Move-Item -Path "~/.vimrc" -Destination "~/.vimrc.bak"
 }
-Copy-Item -Path "$PSScriptRoot/.vimrc" -Destination "~/.vimrc"
+Copy-Item -Path "$PSScriptRoot/files/.vimrc" -Destination "~/.vimrc"
 
 if (-not (Test-Path "~/vimfiles/autoload")) {
 	md ~\vimfiles\autoload
