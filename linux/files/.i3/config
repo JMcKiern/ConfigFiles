@@ -173,6 +173,13 @@ bindsym XF86AudioMute exec "amixer set Master toggle ; pkill -RTMIN+1 i3blocks"
 bindsym XF86AudioLowerVolume exec "amixer -M set Master 5%- ; pkill -RTMIN+1 i3blocks"
 bindsym XF86AudioRaiseVolume exec "amixer -M set Master 5%+ ; pkill -RTMIN+1 i3blocks"
 
+#Media Controls
+bindsym XF86AudioPlay exec "playerctl play-pause"
+bindsym XF86AudioPause exec "playerctl pause"
+bindsym XF86AudioStop exec "playerctl stop"
+bindsym XF86AudioNext exec "playerctl next"
+bindsym XF86AudioPrev exec "playerctl previous"
+
 # class                 border  backgr. text    indicator child_border
 #client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.focused		#333333 #5f676a #ffffff #484e50   #5f676a
