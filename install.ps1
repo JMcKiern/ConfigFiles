@@ -10,15 +10,29 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 
 Update-EnvVars
 
-choco install windows/packages.config -y
+Write-Host "Installing packages"
+if (Test-Path "$PSScriptRoot/windows/packages.config") {
+	choco install "$PSScriptRoot/windows/packages.config" -y
+} else {
+	$pkgFP = "$env:TMP\packages.config"
+	Invoke-WebRequest 'https://raw.githubusercontent.com/JMcKiern/dotfiles/master/windows/packages.config' -OutFile $pkgFP
+	choco install $pkgFP -y
+	Remove-Item $pkgFP
+}
 
 Update-EnvVars
 
-#New-Item -ItemType SymbolicLink -Path ~ -Name .vimrc -Value "$PSScriptRoot/.vimrc"
+Write-Host "Setting up vim"
 if (Test-Path "~/.vimrc") {
-	Move-Item -Path "~/.vimrc" -Destination "~/.vimrc.bak"
+	Move-Item -Path "~/.vimrc" -Destination "~/.vimrc.bak" -Force
 }
-Copy-Item -Path "$PSScriptRoot/files/.vimrc" -Destination "~/.vimrc"
+
+if (Test-Path "$PSScriptRoot/files/.vimrc") {
+	#New-Item -ItemType SymbolicLink -Path ~ -Name .vimrc -Value "$PSScriptRoot/.vimrc"
+	Copy-Item -Path "$PSScriptRoot/files/.vimrc" -Destination "~/.vimrc"
+} else {
+	Invoke-WebRequest 'https://raw.githubusercontent.com/JMcKiern/dotfiles/master/files/.vimrc' -OutFile "~/.vimrc"
+}
 
 if (-not (Test-Path "~/vimfiles/autoload")) {
 	md ~\vimfiles\autoload
@@ -33,6 +47,7 @@ if (-not (Test-Path "~/vimfiles/autoload")) {
 
 vim +PlugInstall +qall
 
+Write-Host "Setting up git"
 git config --global core.editor "'$(Get-Command vim | % { $_.Source -replace '\\', '/'})'"
 git config --global core.autocrlf true
 git config --global user.email "jmckiern@tcd.ie"
