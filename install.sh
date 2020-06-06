@@ -65,3 +65,5 @@ vim +PlugInstall +qall
 git config --global user.email "jmckiern@tcd.ie"
 git config --global user.name "jmckiern"
 git config --global core.editor vim
+
+chsh -s /usr/bin/zsh
