@@ -31,6 +31,9 @@ packages=(
 	chromium
 	pulsemixer
 	playerctl
+	nodejs
+	yarn
+	clang-tools-extra
 )
 
 aur_packages=(

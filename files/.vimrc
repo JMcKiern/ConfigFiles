@@ -164,12 +164,15 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'arrufat/vala.vim'
+"Visual
 Plug 'itchyny/lightline.vim'
-"Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
+
+Plug 'jmckiern/vim-venter'
+
+"Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 "vim-multiple-cursors: <C-n> to use
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
@@ -178,19 +181,38 @@ Plug 'tpope/vim-fugitive'
 "Plug 'tpope/vim-sleuth'
 "Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-unimpaired'
+" Plug 'majutsushi/tagbar'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'valloric/youcompleteme', {'do': './install.py --all'}
+"Plug 'maralla/validator.vim'
+
+"Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'airblade/vim-gitgutter'
+
 Plug 'editorconfig/editorconfig-vim'
-Plug 'majutsushi/tagbar'
-"Plug 'valloric/youcompleteme', {'do': './install.py --clang-completer'}
+
+"Language specific
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-"Plug 'dense-analysis/ale'
-"Plug 'maralla/validator.vim'
 Plug 'PProvost/vim-ps1'
 Plug 'dart-lang/dart-vim-plugin'
-Plug 'jmckiern/vim-venter'
+Plug 'arrufat/vala.vim'
 
 call plug#end()
 
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! GitStatusLine()
 	let l:branch = fugitive#head()
