@@ -39,6 +39,7 @@ packages=(
 aur_packages=(
 	ttf-envy-code-r
 	spotify
+	urxvt-resize-font-git
 )
 
 sudo pacman -Syu --noconfirm

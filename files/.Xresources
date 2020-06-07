@@ -19,6 +19,8 @@
 *color14:   #79cdcd
 *color15:   #e8e9ca
 
+URxvt.perl-ext-common: resize-font
+
 URxvt.colorIT: #87af5f
 URxvt.colorBD: #d7d7d7
 URxvt.colorUL: #87afd7
