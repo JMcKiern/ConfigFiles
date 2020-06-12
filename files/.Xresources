@@ -39,3 +39,5 @@ URxvt.fading: 20
 !URxvt.scrollstyle: plain
 !URxvt.borderColor: #996633
 !URxvt.internalBorder: 1
+
+Xft.dpi: 100
