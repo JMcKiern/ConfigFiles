@@ -163,8 +163,10 @@ font xft:envy code r 11px
 
 #Personal Modifications
 bindsym $mod+i exec chromium
+bindsym $mod+shift+i exec chromium --incognito
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+g exec ~/.fehbg
 
 hide_edge_borders smart
 

@@ -12,11 +12,12 @@ function volume {
 	echo $(pulsemixer --get-volume | awk '{ printf "Vol: %s%%", $1 }')
 }
 
+
 function disk {
 	df_output=$(df -m / | grep / | tr -d %)
-	used_pct=$(echo $df_output | awk '{ print $5 }')
+ 	used_pct=$(echo $df_output | awk '{ print $5 }')
 	avail_space=$(echo $df_output | awk '{ print $4/1000 }')
-	total_space=$(echo $df_output | awk '{ print ($4/((100-$5)/100))/1000 }')
+	total_space=$(echo $df_output | awk '{ print $2/1000 }')
 	used_space=$(echo $total_space - $avail_space | bc)
 	if (( $used_pct > 95 )); then
 		color_fmt=$'\e[31m'
